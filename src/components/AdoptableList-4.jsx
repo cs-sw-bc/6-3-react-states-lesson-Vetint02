@@ -11,18 +11,19 @@ export default function DogList() {
   // Then clear the input
   // Hint: [...dogs, input]
   function addDog() {
-
+    // ... (three dots) is spread operator, copies all elements from existing array
+    setDogs([...dogs, input]);
   }
 
   // Step 2: Write removeDog — remove a dog by name from the array
   // Hint: dogs.filter(...)
   function removeDog(name) {
-
+    setDogs(dogs.filter(dog => dog != name));
   }
 
   // Step 3: Write clearAll — empty the dogs array
   function clearAll() {
-
+    setDogs([]);
   }
 
   return (
@@ -38,7 +39,7 @@ export default function DogList() {
           style={inputStyle}
         />
         {/* Step 4: Wire onClick to addDog */}
-        <button onClick={null} style={{ ...btnStyle, backgroundColor: "#4a90d9" }}>
+        <button onClick={addDog} style={{ ...btnStyle, backgroundColor: "#4a90d9" }}>
           Add 🐶
         </button>
       </div>
@@ -50,7 +51,7 @@ export default function DogList() {
           <div key={dog} style={rowStyle}>
             <span>{dog}</span>
             {/* Step 5: Wire onClick to removeDog, passing the dog's name */}
-            <button onClick={null} style={{ ...btnStyle, backgroundColor: "#e05c5c" }}>
+            <button onClick={() => {removeDog(dog)}} style={{ ...btnStyle, backgroundColor: "#e05c5c" }}>
               Remove
             </button>
           </div>
@@ -58,7 +59,7 @@ export default function DogList() {
       }
 
       {/* Step 6: Wire onClick to clearAll */}
-      <button onClick={null} style={{ ...btnStyle, backgroundColor: "#888", marginTop: "16px" }}>
+      <button onClick={clearAll} style={{ ...btnStyle, backgroundColor: "#888", marginTop: "16px" }}>
         Clear All
       </button>
     </div>
